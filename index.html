@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechForge | Онлайн-школа востребованных профессий</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a855f7;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .btn-contact {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-contact:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-main {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: var(--gradient);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* --- Courses Grid --- */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+        }
+
+        .course-card h3 {
+            font-size: 1.25rem;
+        }
+
+        .course-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .btn-more {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-more:hover {
+            background: white;
+            color: var(--bg-dark);
+        }
+
+        /* --- Benefits --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .benefit-item i {
+            margin-bottom: 1.5rem;
+            color: var(--accent-secondary);
+        }
+
+        .benefit-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* --- Form --- */
+        .form-section {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 4rem auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .lead-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        input, select {
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent-primary);
+        }
+
+        /* --- FAQ --- */
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 0;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            color: var(--text-dim);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active i {
+            transform: rotate(180deg);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .footer-socials a {
+            color: var(--text-dim);
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">TECHFORGE</a>
+            <div class="nav-links">
+                <a href="#courses">Курсы</a>
+                <a href="#benefits">Преимущества</a>
+                <a href="#faq">FAQ</a>
+                <button class="btn-contact" onclick="document.querySelector('#enroll').scrollIntoView()">Связаться</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Учись востребованным <span>профессиям будущего</span></h1>
+            <p>Практические знания от экспертов индустрии. Начни путь в IT и измени свою карьеру уже сегодня.</p>
+            <button class="cta-main" onclick="document.querySelector('#courses').scrollIntoView()">Выбрать курс</button>
+        </section>
+
+        <!-- Courses -->
+        <section id="courses">
+            <div class="section-title">
+                <h2>Наши курсы</h2>
+                <p>Выберите направление, которое подходит именно вам</p>
+            </div>
+            <div class="courses-grid">
+                <!-- UI/UX -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="palette"></i></div>
+                    <h3>UX/UI-дизайнер</h3>
+                    <p>Проектируйте удобные интерфейсы и создавайте визуальные решения для мировых брендов.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+                <!-- Java -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="coffee"></i></div>
+                    <h3>Java-программист</h3>
+                    <p>Освойте самый популярный язык для разработки крупных корпоративных систем.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+                <!-- JS -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="code-2"></i></div>
+                    <h3>JavaScript-программист</h3>
+                    <p>Создавайте динамичные сайты и мощные веб-приложения на стеке React/Node.js.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+                <!-- English -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="languages"></i></div>
+                    <h3>Английский для IT</h3>
+                    <p>Специализированный курс для общения с заказчиками и работы в зарубежных компаниях.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+                <!-- Crypto -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="bitcoin"></i></div>
+                    <h3>Криптовалюты и Трейдинг</h3>
+                    <p>Разберитесь в блокчейн-технологиях и научитесь управлять цифровыми активами.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+                <!-- Python -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="terminal"></i></div>
+                    <h3>Python-разработчик</h3>
+                    <p>Универсальный язык для бэкенда, автоматизации и анализа данных.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+                <!-- AI/ML -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="cpu"></i></div>
+                    <h3>Нейросети и ML</h3>
+                    <p>Обучайте модели и внедряйте искусственный интеллект в реальные бизнес-процессы.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+                <!-- Sales -->
+                <div class="course-card">
+                    <div class="course-icon"><i data-lucide="trending-up"></i></div>
+                    <h3>Обучение продажам</h3>
+                    <p>Искусство переговоров и закрытия сделок в сфере высоких технологий.</p>
+                    <button class="btn-more">Подробнее</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits -->
+        <section id="benefits">
+            <div class="section-title">
+                <h2>Почему выбирают нас</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i data-lucide="award" size="48"></i>
+                    <h4>Сертификат</h4>
+                    <p>Выдаем официальный документ, подтверждающий ваши навыки.</p>
+                </div>
+                <div class="benefit-item">
+                    <i data-lucide="briefcase" size="48"></i>
+                    <h4>Практика</h4>
+                    <p>Работа над реальными кейсами от наших партнеров-работодателей.</p>
+                </div>
+                <div class="benefit-item">
+                    <i data-lucide="users" size="48"></i>
+                    <h4>Трудоустройство</h4>
+                    <p>Помогаем составить резюме и готовим к собеседованиям.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lead Form -->
+        <section id="enroll">
+            <div class="form-section">
+                <div class="section-title">
+                    <h2>Оставьте заявку</h2>
+                    <p>Наш менеджер перезвонит вам и поможет подобрать курс</p>
+                </div>
+                <form class="lead-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="course-select">
+                            <option value="">Выберите интересующий курс</option>
+                            <option value="uiux">UX/UI-дизайнер</option>
+                            <option value="java">Java-программист</option>
+                            <option value="js">JavaScript-программист</option>
+                            <option value="python">Python-разработчик</option>
+                            <option value="ai">Нейросети и ML</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="cta-main">Отправить заявку</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <div class="section-title">
+                <h2>Частые вопросы</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">Нужны ли начальные знания? <i data-lucide="chevron-down"></i></button>
+                    <div class="faq-answer">Большинство наших курсов рассчитаны на обучение с нуля. Главное — ваше желание и наличие времени на практику.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Как проходит обучение? <i data-lucide="chevron-down"></i></button>
+                    <div class="faq-answer">Обучение проходит в онлайн-формате: видеолекции, живые вебинары с преподавателями и проверка домашних заданий.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Можно ли платить частями? <i data-lucide="chevron-down"></i></button>
+                    <div class="faq-answer">Да, мы предоставляем беспроцентную рассрочку до 12 месяцев от банков-партнеров.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="logo">TECHFORGE</div>
+        <div class="footer-socials">
+            <a href="#"><i data-lucide="instagram"></i></a>
+            <a href="#"><i data-lucide="send"></i></a>
+            <a href="#"><i data-lucide="github"></i></a>
+        </div>
+        <p class="copyright">© 2024 TechForge Education. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Инициализация иконок Lucide
+        lucide.createIcons();
+
+        // FAQ Аккордеон
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                
+                // Закрыть другие открытые вопросы
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) item.classList.remove('active');
+                });
+
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Валидация и отправка формы (симуляция)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            if(name.length < 2) {
+                alert('Пожалуйста, введите корректное имя');
+                return;
+            }
+
+            alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
+            this.reset();
+        });
+
+        // Эффект появления при скролле (простой)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.course-card, .benefit-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
