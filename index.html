@@ -560,26 +560,174 @@
             this.reset();
         });
 
-        // Эффект появления при скролле (простой)
-        const observerOptions = {
-            threshold: 0.1
-        };
+// Эффект появления при скролле (простой)
+const observerOptions = {
+    threshold: 0.1
+};
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('loaded');
+            entry.target.classList.remove('loading');
+        }
+    });
+}, observerOptions);
 
-        document.querySelectorAll('.course-card, .benefit-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
-        });
+document.querySelectorAll('.course-card, .benefit-item').forEach(el => {
+    el.classList.add('loading');
+    observer.observe(el);
+});
+
+// Добавление интерактивности кнопок
+document.querySelectorAll('.btn-more').forEach(button => {
+    button.addEventListener('click', function() {
+        const courseCard = this.closest('.course-card');
+        const courseTitle = courseCard.querySelector('h3').textContent;
+        const courseDescription = courseCard.querySelector('p').textContent;
+        
+        // Симуляция открытия модального окна
+        showCourseModal(courseTitle, courseDescription);
+    });
+});
+
+// Обработка отправки формы
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitButton = this.querySelector('button[type="submit"]');
+    submitButton.classList.add('loading');
+    
+    // Симуляция отправки
+    setTimeout(() => {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const course = document.getElementById('course-select').value;
+        
+        if(name.length < 2) {
+            alert('Пожалуйста, введите корректное имя');
+            submitButton.classList.remove('loading');
+            return;
+        }
+        
+        alert(`Спасибо, ${name}! Ваша заявка на курс "${getCourseName(course)}" принята. Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
+        this.reset();
+        submitButton.classList.remove('loading');
+    }, 1000);
+});
+
+// Получение названия курса по значению
+function getCourseName(value) {
+    const courses = {
+        '': 'Выберите курс',
+        'uiux': 'UX/UI-дизайнер',
+        'java': 'Java-программист',
+        'js': 'JavaScript-программист',
+        'python': 'Python-разработчик',
+        'ai': 'Нейросети и ML',
+        'english': 'Английский для IT'
+    };
+    return courses[value] || value;
+}
+
+// Модальное окно для курсов
+function showCourseModal(title, description) {
+    const modal = document.createElement('div');
+    modal.className = 'course-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <h3>${title}</h3>
+            <p>${description}</p>
+            <button class="modal-close">Закрыть</button>
+        </div>
+    `;
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal(modal);
+        }
+    });
+    document.body.appendChild(modal);
+    
+    // Закрытие по кнопке
+    modal.querySelector('.modal-close').addEventListener('click', () => closeModal(modal));
+    
+    // Анимация появления
+    setTimeout(() => modal.classList.add('active'), 10);
+}
+
+// Закрытие модального окна
+function closeModal(modal) {
+    modal.classList.remove('active');
+    setTimeout(() => modal.remove(), 300);
+}
+
+// Добавление стилей для модального окна
+const modalStyles = document.createElement('style');
+modalStyles.textContent = `
+    .course-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 2000;
+    }
+
+    .course-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal-content {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .course-modal.active .modal-content {
+        transform: scale(1);
+    }
+
+    .modal-content h3 {
+        color: var(--accent-primary);
+        margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+        color: var(--text-dim);
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-close {
+        background: var(--gradient);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+
+    .modal-close:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+    }
+`;
+document.head.appendChild(modalStyles);
     </script>
 </body>
 </html>
