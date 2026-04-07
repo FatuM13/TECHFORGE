@@ -1,733 +1,551 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechForge | Онлайн-школа востребованных it-профессий</title>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-        :root {
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --accent-primary: #6366f1;
-            --accent-secondary: #a855f7;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            --transition: all 0.3s ease;
-        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TechForge Academy | Kinetic Observatory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#490080",
+                    "on-background": "#dae2fd",
+                    "background": "#0b1326",
+                    "on-secondary-fixed": "#2c0051",
+                    "surface-container-lowest": "#060e20",
+                    "secondary-container": "#6f00be",
+                    "on-tertiary-container": "#452000",
+                    "on-surface": "#dae2fd",
+                    "on-secondary-fixed-variant": "#6900b3",
+                    "surface-dim": "#0b1326",
+                    "surface-container-highest": "#2d3449",
+                    "surface-container-high": "#222a3d",
+                    "surface-container": "#171f33",
+                    "secondary": "#ddb7ff",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "error-container": "#93000a",
+                    "primary": "#c0c1ff",
+                    "tertiary-fixed-dim": "#ffb783",
+                    "on-primary-fixed": "#07006c",
+                    "on-tertiary-fixed": "#301400",
+                    "secondary-fixed": "#f0dbff",
+                    "on-error-container": "#ffdad6",
+                    "primary-container": "#8083ff",
+                    "secondary-fixed-dim": "#ddb7ff",
+                    "on-error": "#690005",
+                    "tertiary": "#ffb783",
+                    "outline": "#908fa0",
+                    "tertiary-container": "#d97721",
+                    "on-tertiary": "#4f2500",
+                    "primary-fixed": "#e1e0ff",
+                    "on-primary": "#1000a9",
+                    "error": "#ffb4ab",
+                    "inverse-surface": "#dae2fd",
+                    "on-surface-variant": "#c7c4d7",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "surface-tint": "#c0c1ff",
+                    "inverse-primary": "#494bd6",
+                    "outline-variant": "#464554",
+                    "surface": "#0b1326",
+                    "on-primary-container": "#0d0096",
+                    "surface-bright": "#31394d",
+                    "tertiary-fixed": "#ffdcc5",
+                    "on-tertiary-fixed-variant": "#703700",
+                    "surface-container-low": "#131b2e",
+                    "inverse-on-surface": "#283044",
+                    "surface-variant": "#2d3449",
+                    "on-secondary-container": "#d6a9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        html {
             scroll-behavior: smooth;
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-
-        /* --- Header --- */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #c0c1ff 0%, #8083ff 100%);
         }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
+        .glass-panel {
+            background: rgba(23, 31, 51, 0.4);
+            backdrop-filter: blur(20px);
         }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
+        .animate-spin-slow {
+            animation: spin 12s linear infinite;
         }
-
-        .nav-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-        .nav-links a:hover {
-            color: var(--text-main);
-        }
-
-        .btn-contact {
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-contact:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent-primary);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-main {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: white;
-            background: var(--gradient);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .cta-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
-        }
-
-        /* --- Courses Grid --- */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .course-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .course-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .course-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-primary);
-        }
-
-        .course-card h3 {
-            font-size: 1.25rem;
-        }
-
-        .course-card p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
-
-        .btn-more {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-main);
-            padding: 0.8rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-more:hover {
-            background: white;
-            color: var(--bg-dark);
-        }
-
-        /* --- Benefits --- */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .benefit-item i {
-            margin-bottom: 1.5rem;
-            color: var(--accent-secondary);
-        }
-
-        .benefit-item h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
-
-        /* --- Form --- */
-        .form-section {
-            background: var(--bg-card);
-            border-radius: 30px;
-            padding: 4rem 2rem;
-            max-width: 800px;
-            margin: 4rem auto;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .lead-form {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        input, select {
-            padding: 1rem;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: white;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        input:focus, select:focus {
-            border-color: var(--accent-primary);
-        }
-
-        /* --- FAQ --- */
-        .faq-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .faq-question {
-            width: 100%;
-            padding: 1.5rem 0;
-            background: none;
-            border: none;
-            color: white;
-            text-align: left;
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease-out;
-            color: var(--text-dim);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding-bottom: 1.5rem;
-        }
-
-        .faq-item i {
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active i {
-            transform: rotate(180deg);
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 4rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .footer-socials a {
-            color: var(--text-dim);
-            transition: var(--transition);
-        }
-
-        .footer-socials a:hover {
-            color: var(--accent-primary);
-        }
-
-        .copyright {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        /* --- Mobile Responsive --- */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.2rem; }
-            .section-title h2 { font-size: 2rem; }
+        .course-card-img {
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         }
     </style>
 </head>
-<body>
-
-    <header>
-        <nav class="nav-container">
-            <a href="#" class="logo">TECHFORGE</a>
-            <div class="nav-links">
-                <a href="#courses">Курсы</a>
-                <a href="#benefits">Преимущества</a>
-                <a href="#faq">FAQ</a>
-                <button class="btn-contact" onclick="document.querySelector('#enroll').scrollIntoView()">Связаться</button>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-full">
+<div class="text-2xl font-bold tracking-tighter text-indigo-100 font-['Inter'] antialiased">
+                TechForge
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero -->
-        <section class="hero">
-            <h1>Учись востребованным <span>профессиям будущего</span></h1>
-            <p>Практические знания от экспертов индустрии. Начни путь в IT и измени свою карьеру уже сегодня.</p>
-            <button class="cta-main" onclick="document.querySelector('#courses').scrollIntoView()">Выбрать курс</button>
-        </section>
-
-        <!-- Courses -->
-        <section id="courses">
-            <div class="section-title">
-                <h2>Наши курсы</h2>
-                <p>Выберите направление, которое подходит именно вам</p>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-indigo-200 border-b-2 border-indigo-500 pb-1 font-['Inter'] antialiased" href="#">Академия</a>
+<a class="text-slate-400 hover:text-indigo-300 transition-colors font-['Inter'] antialiased" href="#courses">Программа</a>
+<a class="text-slate-400 hover:text-indigo-300 transition-colors font-['Inter'] antialiased" href="#">Наставники</a>
+<a class="text-slate-400 hover:text-indigo-300 transition-colors font-['Inter'] antialiased" href="#">Цены</a>
+</div>
+<a class="bg-indigo-400 text-on-primary px-6 py-2 rounded-full font-bold hover:bg-indigo-300 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="#enroll">
+                Начать обучение
+            </a>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-surface-container-high/50 border border-outline-variant/15">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-label-md font-bold uppercase tracking-widest text-secondary">Набор открыт 2024</span>
+</div>
+<h1 class="text-[3.5rem] md:text-[5rem] font-bold leading-[1.1] tracking-tighter text-on-surface">
+                        Станьте кузнецом <br/>
+<span class="text-primary italic">цифрового будущего</span>
+</h1>
+<p class="text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+                        Погрузитесь в экосистему TechForge. Мы не просто учим коду — мы формируем инженерное мышление через глубокое погружение и менторство экспертов индустрии.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<a class="kinetic-gradient text-on-primary px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(192,193,255,0.3)] transition-all flex items-center justify-center" href="#enroll">
+                            Начать обучение
+                        </a>
+<a class="glass-panel text-on-surface border border-outline-variant/15 px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-container-highest transition-all flex items-center justify-center" href="#courses">
+                            Посмотреть программу
+                        </a>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="aspect-square rounded-full border border-outline-variant/10 p-8 flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent rounded-full animate-spin-slow"></div>
+<img alt="Cybersecurity HUD" class="w-full h-full object-cover rounded-full shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDACaLo9glxuc_WIVJUVq5OIYZW-Y-u3HJrjF37G14yuwx0GB7AJtx51yEHDCBMUoT0AwGEJqMc3RmIKr0XSbVGPmEYH7FRjHO0ODvq-GUECuzAvFN_-8gZBC2WN74u8DmExhpgiDlzgHho149x9AMpa_iKpTSeLmG_kfOG6F6D8zJFF2fwQDk6JnghwgfPvH2DHYMIhMVD1zdlpMc4WxpDG4ZMkryXevresJJxb0Sq-5KVVRsa7uuaM9ydUkLBU_yL3jIdVLFM1Rl"/>
+</div>
+<!-- Floating Stat Badge -->
+<div class="absolute -bottom-6 -left-6 glass-panel p-6 rounded-xl border border-outline-variant/15 shadow-xl">
+<div class="text-display-lg font-bold text-primary">94%</div>
+<div class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest">Трудоустройство</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Course Grid Section -->
+<section class="py-32 px-8 bg-surface-container-low" id="courses">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div>
+<h2 class="text-headline-lg text-on-surface mb-4">Направления подготовки</h2>
+<p class="text-body-lg text-on-surface-variant max-w-md">Выберите свой путь в Kinetic Observatory. От дизайна до разработки искусственного интеллекта.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-label-md font-bold text-primary border-b-2 border-primary pb-1 cursor-pointer">Все курсы</span>
+<span class="text-label-md font-bold text-on-surface-variant hover:text-primary cursor-pointer transition-colors">Популярные</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- UX/UI-дизайнер -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="UX/UI Design" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPOXBPV_YYxAqzi6ts8w7mmARy4cjHhZuogft_tAtrqX8Q-Yy3rZ6eXBjksqhQJ9uhkUcUrGHMuFSs964V0IxamXkmHe-FFbzYYh4QWTY21WKssAKMGFiu6HNP7b7bir0r9BXWHOqAZDpeJV3a-QN0pANA8dpyVmZN240ylaK6tm3_ZsYINN1mSMW_eYa4PULQbR-2HWPTwVkdPIHueTP5WWjSFRzdA6AQdvyHyVa09U9sxx7moNiC0UmMvDf2EeYNwUMont1Rqtqx"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-primary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="palette">palette</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">UX/UI-дизайнер</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Проектируйте удобные интерфейсы и создавайте визуальные решения для мировых брендов.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Java-программист -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="Java Programming" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1HzopHbLR0WCnS5tpMZyN_VsYoMoXA2UuBEgH-lc1IFUhCXzFTvTjP9NVI9iA1JI7-2laSJU5icqGnjmy_EIhkS_rXD7tqYJs5oDK19staudW2HFC8u5PVekXR1whTRrwwM9D24-7gORYqCfjAecEHr1DcGwf4N0LjigcEJtSYpuDuDgyZNcbj6wmgax167HuJFudqQUZDbo95EG-tgVV_h3iZZRbluGbRCPGMKn3F3M-vUvZiPOHkx25SNQHBAVUfla0EaFtHWnq"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-secondary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="terminal">terminal</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">Java-программист</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Освойте самый популярный язык для разработки крупных корпоративных систем.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- JavaScript-программист -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="JavaScript" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMtoy5Z5ya77Q7rDBe_mD60Qvkyw2vbDvMO-jrpcccCRD_SZ1FoazzDJfWgeOaS7XLIdw7iVAI3uNx2PNtGJgt46IuYd2MgjQ92wFnjtnmTvD_2pq_tXjfF-MPHePfYhY_y8FvJ1kG-oEpcBGYLItg9yagJpJOCsax5UERrPdQfwQXirFOJTDrNPiIBLLz8dy1rX4hYkqk866HJPtsdO3zNVUgkOt-J-mcGSS7YyatKPfhXqL34qBUdPBumAafuoJcGQtDLbikxp-4"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-tertiary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="javascript">javascript</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">JavaScript-разработчик</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Создавайте динамичные сайты и мощные веб-приложения на стеке React/Node.js.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Английский для IT -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="English for IT" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ_guioKTj8YYoovokMAkgV0LdLnn7B9xf5pVCPa1AZT0ego1E0fCtpMTEss37aHouT15FChfUbIC8fRxFbjpUO8Xo-DOCLNkBHuZ3bdxNZW0NiYiecWFygN_8_M70tUsTNdZY9VPMiH4pw9b-nSh7qO3OL0GoOdphn7RivO2cmPHOdy0EtdBjh79Rjc4f7XeXF1xD5Fx14OwP_IbArImlOPgLKcShuRiv61zJbPCSh0ODQjwxce2_nwpTeEHNtGqH6-G-8p56wCzW"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-primary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="translate">translate</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">Английский для IT</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Специализированный курс для общения с заказчиками и работы в зарубежных компаниях.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Криптовалюты и Трейдинг -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="Crypto Trading" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDkv7qo6QBG3gIbe4ie0DBihIFZ0yROV2jpHinnzNYt4Jmf4B_gAy29P4p_op4neLpTg8C2ED_vFOH_16Jxek6ygBEh18TV4a36B6A1Wq-FHOICRplyw00wFRpUVNONaVvLQxrH6vY4rduKCELEfSFn5hAug_WWTmwJvvkKhLSMIOoWVrOm1I8mafLuLzK1n_eCcD1hWnTWCThFDB135LMpc7LE1gfWDzstR87Kb2o2TY5mAv8vBZtvKHqfaMlD25BYpEfYPOhk4cx"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-secondary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="currency_bitcoin">currency_bitcoin</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">Крипто &amp; Трейдинг</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Разберитесь в блокчейн-технологиях и научитесь управлять цифровыми активами.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Python-разработчик -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="Python Development" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVpsMD4m3Wrsvqy9ihbYhbYiygAg3srt_Sls44KR01yygqgfBrPF_I1x0PR_qFCWYknXTuYoauHIl46M3r4bgXCaL5kg7eHVPADDEFjj-hoXUw2I-bAM3B7EPw3fcullHyCVNlabek2GlJqjpB5_g12THzLqDdoYzWRUP2V9mC1OxMCJOjh6BV3ESzudwrQRegsEnulTF5E4Bjfn-xQYzp6sJzzukokhe6l4aM630OSB05pLBoaPrxglfnnoXCxnsNC0eT7vcleMvE"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-tertiary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="code">code</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">Python-разработчик</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Универсальный язык для бэкенда, автоматизации и анализа данных.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Нейросети и ML -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="AI and ML" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP6ovJGlL5DXH4alcVzlIh7XmNsSmhOJKBU9X8r93ND-VIpRobFoP7Qes5AMybOX0ZEIpNakXc-xaU0Q1mdJcTVgIRn2JhMzUjQdfwYnURTrhkxRWFhduplCC3gjOaA8lJZFMXg-8TF-f7avIyTdMyWUU-pe13z6iKTbCv1KROvAwaGBPRdPbLyn5JWKZAccj-s_s91f9sbTCzebr6Kms2097tWxwnOfuz08qoiql7yy0dUSxbB8h_J52o6Xns9EC0xumrbj-jqrXq"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-primary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="psychology">psychology</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">Нейросети и ML</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Обучайте модели и внедряйте искусственный интеллект в реальные бизнес-процессы.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Обучение продажам -->
+<div class="group glass-panel rounded-xl overflow-hidden border border-outline-variant/15 hover:border-primary/50 transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+<div class="relative h-48 overflow-hidden">
+<img alt="Sales Training" class="w-full h-full object-cover course-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI3onM-3FxpcfHxkPwbVD7bwmuUP-CfiZ7FNXQ1ZGAMu_YDEGYtmYCQ0bM1uuelXX_m2vY46QDvuPI5aNoVU4651nttOd8tR2GgDo6ZIrJGdjFIZaICQZnbLsnuRnD2p6Xu8igDdbMSoNzS0EGZxXXDP5VA2K_aRKOLtSXP1gnloveChEjbIinBLrY6PILVAuhC-oedt513Mm1R3MIKngRyXEvl4H1ejiVVQAGe6qZM9x_v7A0J8yzEx40gtqSX6OxLgWgqDSIeEpq"/>
+<div class="absolute top-4 left-4 w-10 h-10 rounded-lg bg-secondary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="handshake">handshake</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-on-surface mb-3">Обучение продажам</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 flex-grow">Искусство переговоров и закрытия сделок в сфере высоких технологий.</p>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center group-hover:text-primary transition-colors cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Подробнее</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits Section -->
+<section class="py-32 px-8 overflow-hidden">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="space-y-12">
+<h2 class="text-[3rem] font-bold leading-tight">Почему TechForge — это <span class="text-secondary">другой уровень</span></h2>
+<div class="space-y-8">
+<div class="flex gap-6 items-start">
+<div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h4 class="text-title-md font-bold text-on-surface mb-2">Адаптивное обучение</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Наша платформа подстраивается под ваш темп и стиль усвоения материала, предлагая персональные траектории.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-12 h-12 flex-shrink-0 bg-secondary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="groups">groups</span>
+</div>
+<div>
+<h4 class="text-title-md font-bold text-on-surface mb-2">Сильное комьюнити</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Доступ к закрытому клубу выпускников и экспертов из FAANG, готовых стать вашими наставниками.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-12 h-12 flex-shrink-0 bg-tertiary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="deployed_code">deployed_code</span>
+</div>
+<div>
+<h4 class="text-title-md font-bold text-on-surface mb-2">Лабораторные работы</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Никакой сухой теории. Работайте в облачных песочницах над реальными production-задачами.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl opacity-30"></div>
+<div class="relative glass-panel rounded-xl p-8 border border-outline-variant/20">
+<img alt="Group working" class="w-full h-auto rounded-lg shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0b0jgGwrHBa8Q5MGCW8UWvTU-a9i_j45Egxsg_0GfUY7WXPNyqr8ENd7DmTaErwtvaeTYBgBVequ2UBCc6BhHEbggWgmEsrIAHXY7brzxLDDpMjNjPY7p5Yuuqo-k42UTxtqNYVhGvAIEra8Dh1jk7XG_uQA1n7BR45rLmBO-1NYCUqEWvI_c-R_7zTx1teuRul7tOHBVMa21-n1pM7CIqtviuRw7etmNBOQxXOS59xSCaZOxAoT9cHQ1oeyWhi1vnOjz0qJzhcCz"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lead Form Section -->
+<section class="py-32 px-8 bg-surface-container" id="enroll">
+<div class="max-w-4xl mx-auto text-center mb-16">
+<h2 class="text-headline-lg font-bold mb-4">Начните свое восхождение</h2>
+<p class="text-body-lg text-on-surface-variant">Оставьте заявку, и наши карьерные консультанты помогут подобрать программу под ваши цели.</p>
+</div>
+<div class="max-w-xl mx-auto glass-panel p-10 rounded-xl border border-outline-variant/15 shadow-2xl">
+<form class="space-y-6" id="lead-form">
+<div class="space-y-2">
+<label class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest px-1">Ваше имя</label>
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface p-4 transition-all" placeholder="Александр Иванов" required="" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest px-1">Электронная почта</label>
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface p-4 transition-all" placeholder="alex@techforge.io" required="" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest px-1">Телефон</label>
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface p-4 transition-all" pattern="^(\+7|8)[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" placeholder="+7 (999) 000-00-00" required="" type="tel"/>
+</div>
+<div class="pt-4">
+<button class="w-full kinetic-gradient py-5 rounded-xl text-on-primary font-bold text-lg hover:shadow-[0_0_30px_rgba(128,131,255,0.4)] transition-all scale-100 active:scale-95" type="submit">
+                            Забронировать консультацию
+                        </button>
+</div>
+<p class="text-[10px] text-center text-outline uppercase tracking-wider">Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+</form>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-32 px-8">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-headline-lg font-bold mb-12 text-center">Часто задаваемые вопросы</h2>
+<div class="space-y-4">
+<div class="bg-surface-container-low rounded-xl overflow-hidden faq-item">
+<button class="faq-button w-full flex justify-between items-center p-6 text-left hover:bg-surface-container transition-colors group">
+<span class="font-bold text-on-surface">Нужен ли опыт в программировании?</span>
+<span class="material-symbols-outlined text-primary transition-transform duration-300 icon-expand" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6">
+<div class="pb-6 text-on-surface-variant text-sm leading-relaxed">
+                            Для большинства базовых программ опыт не требуется. Мы начинаем с основ и постепенно переходим к сложным концепциям. Однако для продвинутых курсов предусмотрено входное тестирование.
+                        </div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden faq-item">
+<button class="faq-button w-full flex justify-between items-center p-6 text-left hover:bg-surface-container transition-colors group">
+<span class="font-bold text-on-surface">Выдаете ли вы сертификат?</span>
+<span class="material-symbols-outlined text-primary transition-transform duration-300 icon-expand" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6">
+<div class="pb-6 text-on-surface-variant text-sm leading-relaxed">
+                            Да, по окончании обучения и успешной защите дипломного проекта вы получаете сертификат TechForge Academy, признаваемый нашими партнерами.
+                        </div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden faq-item">
+<button class="faq-button w-full flex justify-between items-center p-6 text-left hover:bg-surface-container transition-colors group">
+<span class="font-bold text-on-surface">Помогаете ли вы с трудоустройством?</span>
+<span class="material-symbols-outlined text-primary transition-transform duration-300 icon-expand" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6">
+<div class="pb-6 text-on-surface-variant text-sm leading-relaxed">
+                            У нас есть собственный карьерный центр. Мы помогаем составить резюме, проводим тренировочные собеседования и рекомендуем лучших студентов компаниям-партнерам.
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full border-t border-slate-800/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-12 w-full gap-8">
+<div class="space-y-4">
+<div class="text-lg font-semibold text-slate-200">TechForge Kinetic Observatory</div>
+<div class="flex flex-wrap gap-6">
+<a class="text-slate-500 hover:text-indigo-300 transition-colors font-['Inter'] text-sm tracking-wide" href="#">Политика конфиденциальности</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors font-['Inter'] text-sm tracking-wide" href="#">Условия использования</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors font-['Inter'] text-sm tracking-wide" href="#">Безопасность</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors font-['Inter'] text-sm tracking-wide" href="#">Статус</a>
+</div>
+</div>
+<div class="text-slate-500 font-['Inter'] text-sm tracking-wide text-right">
+                © 2024 TechForge Kinetic Observatory. Все права защищены.
             </div>
-            <div class="courses-grid">
-                <!-- UI/UX -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="palette"></i></div>
-                    <h3>UX/UI-дизайнер</h3>
-                    <p>Проектируйте удобные интерфейсы и создавайте визуальные решения для мировых брендов.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-                <!-- Java -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="coffee"></i></div>
-                    <h3>Java-программист</h3>
-                    <p>Освойте самый популярный язык для разработки крупных корпоративных систем.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-                <!-- JS -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="code-2"></i></div>
-                    <h3>JavaScript-программист</h3>
-                    <p>Создавайте динамичные сайты и мощные веб-приложения на стеке React/Node.js.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-                <!-- English -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="languages"></i></div>
-                    <h3>Английский для IT</h3>
-                    <p>Специализированный курс для общения с заказчиками и работы в зарубежных компаниях.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-                <!-- Crypto -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="bitcoin"></i></div>
-                    <h3>Криптовалюты и Трейдинг</h3>
-                    <p>Разберитесь в блокчейн-технологиях и научитесь управлять цифровыми активами.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-                <!-- Python -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="terminal"></i></div>
-                    <h3>Python-разработчик</h3>
-                    <p>Универсальный язык для бэкенда, автоматизации и анализа данных.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-                <!-- AI/ML -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="cpu"></i></div>
-                    <h3>Нейросети и ML</h3>
-                    <p>Обучайте модели и внедряйте искусственный интеллект в реальные бизнес-процессы.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-                <!-- Sales -->
-                <div class="course-card">
-                    <div class="course-icon"><i data-lucide="trending-up"></i></div>
-                    <h3>Обучение продажам</h3>
-                    <p>Искусство переговоров и закрытия сделок в сфере высоких технологий.</p>
-                    <button class="btn-more">Подробнее</button>
-                </div>
-            </div>
-        </section>
+</div>
+</footer>
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md" id="success-modal">
+<div class="glass-panel max-w-md w-full p-8 rounded-xl border border-outline-variant/20 shadow-2xl text-center space-y-6">
+<div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface">Спасибо!</h3>
+<p class="text-on-surface-variant leading-relaxed">
+            Ваша заявка принята. Наш специалист свяжется с вами в ближайшее время.
+        </p>
+<button class="kinetic-gradient w-full py-4 rounded-xl text-on-primary font-bold hover:shadow-[0_0_20px_rgba(192,193,255,0.3)] transition-all" onclick="document.getElementById('success-modal').classList.add('hidden'); document.getElementById('success-modal').classList.remove('flex');">
+            Отлично
+        </button>
+</div>
+</div><div class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md" id="course-modal">
+<div class="glass-panel max-w-2xl w-full p-10 rounded-xl border border-outline-variant/20 shadow-2xl relative space-y-6">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors" id="close-course-modal">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+<div class="space-y-4">
+<h3 class="text-3xl font-bold text-on-surface" id="course-modal-title">Название курса</h3>
+<div class="h-1 w-20 kinetic-gradient rounded-full"></div>
+</div>
+<p class="text-on-surface-variant text-lg leading-relaxed" id="course-modal-description">
+            Описание курса будет здесь.
+        </p>
+<div class="pt-4">
+<a class="kinetic-gradient inline-flex px-8 py-4 rounded-xl text-on-primary font-bold hover:shadow-[0_0_20px_rgba(192,193,255,0.3)] transition-all" href="#enroll" onclick="document.getElementById('course-modal').classList.add('hidden'); document.getElementById('course-modal').classList.remove('flex');">
+                Записаться на курс
+            </a>
+</div>
+</div>
+</div><script>
+    document.getElementById('lead-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (this.checkValidity()) {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            this.reset();
+        }
+    });
+</script><script>
+    document.querySelectorAll('.faq-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.icon-expand');
+            
+            // Close other items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                    item.querySelector('.icon-expand').style.transform = 'rotate(0deg)';
+                }
+            });
 
-        <!-- Benefits -->
-        <section id="benefits">
-            <div class="section-title">
-                <h2>Почему выбирают нас</h2>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <i data-lucide="award" size="48"></i>
-                    <h4>Сертификат</h4>
-                    <p>Выдаем официальный документ, подтверждающий ваши навыки.</p>
-                </div>
-                <div class="benefit-item">
-                    <i data-lucide="briefcase" size="48"></i>
-                    <h4>Практика</h4>
-                    <p>Работа над реальными кейсами от наших партнеров-работодателей.</p>
-                </div>
-                <div class="benefit-item">
-                    <i data-lucide="users" size="48"></i>
-                    <h4>Трудоустройство</h4>
-                    <p>Помогаем составить резюме и готовим к собеседованиям.</p>
-                </div>
-            </div>
-        </section>
+            // Toggle current item
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+</script><script>
+    (function() {
+        const courseModal = document.getElementById('course-modal');
+        const modalTitle = document.getElementById('course-modal-title');
+        const modalDesc = document.getElementById('course-modal-description');
+        const closeBtn = document.getElementById('close-course-modal');
 
-        <!-- Lead Form -->
-        <section id="enroll">
-            <div class="form-section">
-                <div class="section-title">
-                    <h2>Оставьте заявку</h2>
-                    <p>Наш менеджер перезвонит вам и поможет подобрать курс</p>
-                </div>
-                <form class="lead-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Ваше имя" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
-                    </div>
-                    <div class="form-group">
-                        <select id="course-select">
-                            <option value="">Выберите интересующий курс</option>
-                            <option value="uiux">UX/UI-дизайнер</option>
-                            <option value="java">Java-программист</option>
-                            <option value="js">JavaScript-программист</option>
-                            <option value="python">Python-разработчик</option>
-<option value="ai">Нейросети и ML</option>
-<option value="english">Английский для IT</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="cta-main">Отправить заявку</button>
-                </form>
-            </div>
-        </section>
+        document.querySelectorAll('#courses .group.glass-panel').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                const title = card.querySelector('h3').innerText;
+                const desc = card.querySelector('p').innerText;
 
-        <!-- FAQ -->
-        <section id="faq">
-            <div class="section-title">
-                <h2>Частые вопросы</h2>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">Нужны ли начальные знания? <i data-lucide="chevron-down"></i></button>
-                    <div class="faq-answer">Большинство наших курсов рассчитаны на обучение с нуля. Главное — ваше желание и наличие времени на практику.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Как проходит обучение? <i data-lucide="chevron-down"></i></button>
-                    <div class="faq-answer">Обучение проходит в онлайн-формате: видеолекции, живые вебинары с преподавателями и проверка домашних заданий.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Можно ли платить частями? <i data-lucide="chevron-down"></i></button>
-                    <div class="faq-answer">Да, мы предоставляем беспроцентную рассрочку до 12 месяцев от банков-партнеров.</div>
-                </div>
-            </div>
-        </section>
-    </main>
+                modalTitle.innerText = title;
+                modalDesc.innerText = desc;
 
-    <footer>
-        <div class="logo">TECHFORGE</div>
-        <div class="footer-socials">
-            <a href="#"><i data-lucide="instagram"></i></a>
-            <a href="#"><i data-lucide="send"></i></a>
-            <a href="#"><i data-lucide="github"></i></a>
-        </div>
-        <p class="copyright">© 2024 TechForge Education. Все права защищены.</p>
-    </footer>
-
-    <script>
-        // Инициализация иконок Lucide
-        lucide.createIcons();
-
-        // FAQ Аккордеон
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                
-                // Закрыть другие открытые вопросы
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    if (item !== faqItem) item.classList.remove('active');
-                });
-
-                faqItem.classList.toggle('active');
+                courseModal.classList.remove('hidden');
+                courseModal.classList.add('flex');
             });
         });
 
-        // Валидация и отправка формы (симуляция)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
+        const closeModal = () => {
+            courseModal.classList.add('hidden');
+            courseModal.classList.remove('flex');
+        };
 
-            if(name.length < 2) {
-                alert('Пожалуйста, введите корректное имя');
-                return;
-            }
-
-            alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
-            this.reset();
+        closeBtn.addEventListener('click', closeModal);
+        courseModal.addEventListener('click', (e) => {
+            if (e.target === courseModal) closeModal();
         });
-
-// Эффект появления при скролле (простой)
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('loaded');
-            entry.target.classList.remove('loading');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.course-card, .benefit-item').forEach(el => {
-    el.classList.add('loading');
-    observer.observe(el);
-});
-
-// Добавление интерактивности кнопок
-document.querySelectorAll('.btn-more').forEach(button => {
-    button.addEventListener('click', function() {
-        const courseCard = this.closest('.course-card');
-        const courseTitle = courseCard.querySelector('h3').textContent;
-        const courseDescription = courseCard.querySelector('p').textContent;
-        
-        // Симуляция открытия модального окна
-        showCourseModal(courseTitle, courseDescription);
-    });
-});
-
-// Обработка отправки формы
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitButton = this.querySelector('button[type="submit"]');
-    submitButton.classList.add('loading');
-    
-    // Симуляция отправки
-    setTimeout(() => {
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const course = document.getElementById('course-select').value;
-        
-        if(name.length < 2) {
-            alert('Пожалуйста, введите корректное имя');
-            submitButton.classList.remove('loading');
-            return;
-        }
-        
-        alert(`Спасибо, ${name}! Ваша заявка на курс "${getCourseName(course)}" принята. Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
-        this.reset();
-        submitButton.classList.remove('loading');
-    }, 1000);
-});
-
-// Получение названия курса по значению
-function getCourseName(value) {
-    const courses = {
-        '': 'Выберите курс',
-        'uiux': 'UX/UI-дизайнер',
-        'java': 'Java-программист',
-        'js': 'JavaScript-программист',
-        'python': 'Python-разработчик',
-        'ai': 'Нейросети и ML',
-        'english': 'Английский для IT'
-    };
-    return courses[value] || value;
-}
-
-// Модальное окно для курсов
-function showCourseModal(title, description) {
-    const modal = document.createElement('div');
-    modal.className = 'course-modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <h3>${title}</h3>
-            <p>${description}</p>
-            <button class="modal-close">Закрыть</button>
-        </div>
-    `;
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal(modal);
-        }
-    });
-    document.body.appendChild(modal);
-    
-    // Закрытие по кнопке
-    modal.querySelector('.modal-close').addEventListener('click', () => closeModal(modal));
-    
-    // Анимация появления
-    setTimeout(() => modal.classList.add('active'), 10);
-}
-
-// Закрытие модального окна
-function closeModal(modal) {
-    modal.classList.remove('active');
-    setTimeout(() => modal.remove(), 300);
-}
-
-// Добавление стилей для модального окна
-const modalStyles = document.createElement('style');
-modalStyles.textContent = `
-    .course-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 2000;
-    }
-
-    .course-modal.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .modal-content {
-        background: var(--bg-card);
-        padding: 2rem;
-        border-radius: 20px;
-        max-width: 500px;
-        width: 90%;
-        text-align: center;
-        position: relative;
-        transform: scale(0.9);
-        transition: transform 0.3s ease;
-    }
-
-    .course-modal.active .modal-content {
-        transform: scale(1);
-    }
-
-    .modal-content h3 {
-        color: var(--accent-primary);
-        margin-bottom: 1rem;
-    }
-
-    .modal-content p {
-        color: var(--text-dim);
-        margin-bottom: 1.5rem;
-    }
-
-    .modal-close {
-        background: var(--gradient);
-        color: white;
-        border: none;
-        padding: 0.8rem 2rem;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: var(--transition);
-    }
-
-    .modal-close:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
-    }
-`;
-document.head.appendChild(modalStyles);
-    </script>
-</body>
-</html>
+    })();
+</script></body></html>
